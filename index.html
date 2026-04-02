@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Nacho is a navy-and-gold AI chatbot for live news, general questions, and math help."
+    />
+    <title>Nacho | News, General AI, and Math</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#chat-panel">Skip to chat</a>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <div class="ambient ambient-left" aria-hidden="true"></div>
+      <div class="ambient ambient-right" aria-hidden="true"></div>
+
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="hero-label">Current News + General AI</p>
+          <h1>Nacho answers live headlines, general questions, and math in one navy-and-gold workspace.</h1>
+          <p class="hero-text">
+            Ask about current events from BBC, CNN, Al Jazeera, NPR, The Guardian, CBS News, and Sky News. You can
+            also ask general knowledge questions and arithmetic-style math, and press Enter to send instantly.
+          </p>
+
+          <div class="hero-actions">
+            <button id="refresh-news" class="button button-primary" type="button">Refresh live feed</button>
+            <a class="button button-secondary" href="#chat-panel">Start chatting</a>
+          </div>
+
+          <div class="hero-skill-ribbon" aria-label="Nacho capabilities">
+            <span>Live News</span>
+            <span>General Questions</span>
+            <span>Math Help</span>
+            <span>Source-Linked Headlines</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-panel panel-main">
+            <span class="panel-label">Nacho Snapshot</span>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span class="stat-label">Coverage</span>
+                <strong id="coverage-count">8 sources</strong>
+                <span class="stat-detail">Credible feed-backed outlets</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Mode</span>
+                <strong id="model-status">Checking AI setup...</strong>
+                <span class="stat-detail" id="model-detail">Preparing live context</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Freshness</span>
+                <strong id="last-updated">Loading...</strong>
+                <span class="stat-detail">Auto-cached for 5 minutes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel panel-note">
+            <span class="note-pill">Try prompts like</span>
+            <ul class="prompt-list">
+              <li>What are the biggest world headlines right now?</li>
+              <li>Explain inflation in simple terms.</li>
+              <li>What is (24 * 17) / 3?</li>
+            </ul>
+          </div>
+
+          <div class="hero-ring"></div>
+        </div>
+      </header>
+
+      <section class="trust-strip" aria-label="Nacho highlights">
+        <article class="trust-item">
+          <span class="trust-label">News Mode</span>
+          <strong>Grounds current-affairs answers in live source feeds and links you back to the outlets.</strong>
+        </article>
+        <article class="trust-item">
+          <span class="trust-label">General Mode</span>
+          <strong>Handles broader questions too when your OpenAI API key is configured.</strong>
+        </article>
+        <article class="trust-item">
+          <span class="trust-label">Fast Input</span>
+          <strong>Press Enter to send a question. Use Shift+Enter when you want a new line.</strong>
+        </article>
+      </section>
+
+      <main class="dashboard">
+        <section class="panel chat-panel reveal" id="chat-panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Ask Nacho</p>
+              <h2>Chat workspace</h2>
+            </div>
+            <span id="chat-status" class="status-pill">Connecting...</span>
+          </div>
+
+          <p class="chat-helper">Enter sends your message. Shift+Enter adds a new line.</p>
+
+          <div class="suggestions" id="suggestions"></div>
+
+          <div id="chat-log" class="chat-log" aria-live="polite"></div>
+
+          <form id="chat-form" class="chat-form">
+            <label class="sr-only" for="chat-input">Ask a question</label>
+            <textarea
+              id="chat-input"
+              name="message"
+              rows="3"
+              placeholder="Ask about the latest news, a general topic, or a math problem..."
+              required
+            ></textarea>
+            <button class="button button-primary" type="submit">Ask Nacho</button>
+          </form>
+        </section>
+
+        <aside class="panel headlines-panel reveal">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Live feed</p>
+              <h2>Current headlines</h2>
+            </div>
+          </div>
+
+          <div id="source-badges" class="source-badges"></div>
+          <div id="headline-list" class="headline-list"></div>
+        </aside>
+      </main>
+    </div>
+
+    <template id="message-template">
+      <article class="message">
+        <div class="message-role"></div>
+        <div class="message-body"></div>
+        <div class="message-sources"></div>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
