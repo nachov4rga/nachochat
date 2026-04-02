@@ -1,0 +1,10 @@
+{
+  "name": "nacho-news-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A navy-themed AI chatbot grounded in current news from credible sources.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}
