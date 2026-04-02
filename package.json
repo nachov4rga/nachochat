@@ -5,6 +5,11 @@
   "description": "A navy-themed AI chatbot grounded in current news from credible sources.",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.79.0"
   }
 }
